@@ -6,37 +6,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 
-
-public class MonochromeLedStripTest {
+public class LedStripTest {
 
     public static final int[] ZEROES = {0, 0, 0, 0, 0, 0, 0, 0};
 
-    @Test
-    public void
-    should_send_data_to_clear_the_strip() {
-        RecordedLedStripIO io = new RecordedLedStripIO();
-        MonochromeLedStrip strip = new MonochromeLedStrip(io, 1);
-
-        strip.clear();
-
-        List<int[]> expected = Arrays.asList(
-                ZEROES, ZEROES, ZEROES, ZEROES,
-                new int[]{1, 1, 1, 0, 0, 0, 0, 0}, ZEROES, ZEROES, ZEROES,
-                ZEROES, ZEROES, ZEROES, ZEROES, ZEROES, ZEROES, ZEROES, ZEROES);
-
-        for (int i = 0; i < expected.size(); i++) {
-            assertArrayEquals(expected.get(i), io.getRecordedBits().get(i));
-        }
-    }
 
     @Test public void
     should_update_the_strip_with_the_same_color() {
         RecordedLedStripIO io = new RecordedLedStripIO();
-        MonochromeLedStrip strip = new MonochromeLedStrip(io, 3);
+        LedStrip strip = new LedStrip(io);
+        ColorBand colors = new ColorBand(3);
+        colors.setAllToSameColor(new ARGBColor(1, 255,255,255));
 
-        strip.changeColor(new ARGBColor(1, 255,255,255));
+        strip.setColors(colors);
 
         List<int[]> expected = Arrays.asList(
                 ZEROES, ZEROES, ZEROES, ZEROES,

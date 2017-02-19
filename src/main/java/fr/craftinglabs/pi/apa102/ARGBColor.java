@@ -41,4 +41,26 @@ public class ARGBColor {
     public int getBrightness() {
         return brightness;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ARGBColor argbColor = (ARGBColor) o;
+
+        if (red != argbColor.red) return false;
+        if (green != argbColor.green) return false;
+        if (blue != argbColor.blue) return false;
+        return brightness == argbColor.brightness;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = red;
+        result = 31 * result + green;
+        result = 31 * result + blue;
+        result = 31 * result + brightness;
+        return result;
+    }
 }
