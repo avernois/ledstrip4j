@@ -63,4 +63,14 @@ public class ARGBColor {
         result = 31 * result + brightness;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "ARGBColor{" +
+                "brightness=" + brightness +
+                ", red=" + red +
+                ", green=" + green +
+                ", blue=" + blue +
+                '}';
+    }
 }
