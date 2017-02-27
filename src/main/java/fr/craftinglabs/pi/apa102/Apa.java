@@ -11,46 +11,35 @@ public class Apa {
         GpioPinDigitalOutput data = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "DATA", PinState.LOW);
 
         LedStripIO io = new LedStripGPIO(data, clock);
+        Size size = new Size(20, 7);
+        
+        Frame frame = new Frame(size);
+        for (int i = 0; i < frame.getLineNb(); i++) {
+            for (int j = 0; j < frame.getColumnNb(); j++) {
+                int columnStep = (255 / size.nbColumns()) * j;
+                int lineStep = (255 / size.nbLines()) * i;
+                ARGBColor color = new ARGBColor(30, columnStep, 0, 255 - lineStep);
+                frame.setPixelAt(i, j, color);
+            }
+        }
 
-        int waitingTime = 1000;
+        ApaMatrix matrix = new ApaMatrix(size, new Apa102LedStrip(io));
 
-        LedStrip ledStrip = new Apa102LedStrip(io);
-        ColorBand colorBand = new ColorBand(120);
+        matrix.print(new Frame(size, ARGBColor.BLACK));
 
-        colorBand.setAllToSameColor(new ARGBColor(3, 50, 0, 0));
-        ledStrip.setColors(colorBand);
-        Thread.sleep(waitingTime);
+        matrix.print(frame);
+        Thread.sleep(1000 * 3);
 
-        colorBand.setAllToSameColor(new ARGBColor(3, 200, 0, 100));
-        ledStrip.setColors(colorBand);
-        Thread.sleep(waitingTime);
+        matrix.print(new Frame(size, new ARGBColor(20, 255, 0, 0)));
+        Thread.sleep(1000 * 3);
 
-        colorBand.setAllToSameColor(new ARGBColor(20, 0, 127, 0));
-        ledStrip.setColors(colorBand);
-        Thread.sleep(waitingTime);
+        matrix.print(new Frame(size, new ARGBColor(20, 0, 255, 0)));
+        Thread.sleep(1000 * 3);
 
-        colorBand.setAllToSameColor(new ARGBColor(2, 127, 2, 15));
-        ledStrip.setColors(colorBand);
+        matrix.print(new Frame(size, new ARGBColor(20, 0, 0, 255)));
+        Thread.sleep(1000 * 3);
 
-        ARGBColor color1 = new ARGBColor(10, 2, 127, 15);
-        colorBand.setColorAt(color1, 24);
-        colorBand.setColorAt(color1, 25);
-        colorBand.setColorAt(color1, 72);
-        colorBand.setColorAt(color1, 73);
-        colorBand.setColorAt(color1, 120);
-        ARGBColor color2 = new ARGBColor(10, 2, 15, 127);
-        colorBand.setColorAt(color2, 1);
-        colorBand.setColorAt(color2, 48);
-        colorBand.setColorAt(color2, 49);
-        colorBand.setColorAt(color2, 96);
-        colorBand.setColorAt(color2, 97);
-
-        ledStrip.setColors(colorBand);
-
-        Thread.sleep(waitingTime);
-
-        colorBand.setAllToSameColor(ARGBColor.BLACK);
-        ledStrip.setColors(colorBand);
+        matrix.print(new Frame(size, ARGBColor.BLACK));
     }
 }
 
