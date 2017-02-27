@@ -14,7 +14,7 @@ public class Apa {
 
         int waitingTime = 1000;
 
-        LedStrip ledStrip = new LedStrip(io);
+        LedStrip ledStrip = new Apa102LedStrip(io);
         ColorBand colorBand = new ColorBand(120);
 
         colorBand.setAllToSameColor(new ARGBColor(3, 50, 0, 0));

@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class LedStripTest {
+public class Apa102LedStripTest {
 
     public static final int[] ZEROES = {0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -16,7 +16,7 @@ public class LedStripTest {
     @Test public void
     should_update_the_strip_with_the_same_color() {
         RecordedLedStripIO io = new RecordedLedStripIO();
-        LedStrip strip = new LedStrip(io);
+        LedStrip strip = new Apa102LedStrip(io);
         ColorBand colors = new ColorBand(3);
         colors.setAllToSameColor(new ARGBColor(1, 255,255,255));
 
