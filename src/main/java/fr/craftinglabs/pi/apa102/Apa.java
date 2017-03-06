@@ -1,11 +1,15 @@
 package fr.craftinglabs.pi.apa102;
 
 import com.pi4j.io.gpio.*;
+import com.pi4j.wiringpi.GpioUtil;
 
 
 public class Apa {
 
     public static void main(String[] args) throws InterruptedException {
+
+        GpioUtil.enableNonPrivilegedAccess();
+
         final GpioController gpio = GpioFactory.getInstance();
         GpioPinDigitalOutput clock = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "CLOCK", PinState.LOW);
         GpioPinDigitalOutput data = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "DATA", PinState.LOW);
