@@ -3,6 +3,7 @@ package fr.craftinglabs.pi.apa102;
 import com.pi4j.io.gpio.*;
 import com.pi4j.wiringpi.GpioUtil;
 
+import java.time.LocalTime;
 
 public class Apa {
 
@@ -22,7 +23,7 @@ public class Apa {
             for (int j = 0; j < frame.getColumnNb(); j++) {
                 int columnStep = (255 / size.nbColumns()) * j;
                 int lineStep = (255 / size.nbLines()) * i;
-                ARGBColor color = new ARGBColor(30, columnStep, 0, 255 - lineStep);
+                ARGBColor color = new ARGBColor(20, columnStep, 150, 255 - lineStep);
                 frame.setPixelAt(i, j, color);
             }
         }
@@ -32,16 +33,13 @@ public class Apa {
         matrix.print(new Frame(size, ARGBColor.BLACK));
 
         matrix.print(frame);
-        Thread.sleep(1000 * 3);
 
-        matrix.print(new Frame(size, new ARGBColor(20, 255, 0, 0)));
-        Thread.sleep(1000 * 3);
+        matrix.print(new Frame(size, ARGBColor.BLACK));
 
-        matrix.print(new Frame(size, new ARGBColor(20, 0, 255, 0)));
-        Thread.sleep(1000 * 3);
-
-        matrix.print(new Frame(size, new ARGBColor(20, 0, 0, 255)));
-        Thread.sleep(1000 * 3);
+        for (int i = 0; i < 1000; i++) {
+            matrix.print(TimeFrameBuilder.time(LocalTime.now()));
+            Thread.sleep(1000);
+        }
 
         matrix.print(new Frame(size, ARGBColor.BLACK));
     }

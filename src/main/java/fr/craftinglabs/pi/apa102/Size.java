@@ -16,4 +16,22 @@ public class Size {
     public int nbLines() {
         return nbLines;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Size size = (Size) o;
+
+        if (nbColumn != size.nbColumn) return false;
+        return nbLines == size.nbLines;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nbColumn;
+        result = 31 * result + nbLines;
+        return result;
+    }
 }
