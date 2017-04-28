@@ -6,25 +6,59 @@ import java.time.format.DateTimeFormatter;
 
 public class TimeFrameBuilder {
 
-    public static Frame time(LocalTime time) {
-        String sep = time.getSecond() % 2 == 0 ? ":": " ";
-        String timeString = time.format(DateTimeFormatter.ofPattern("HH" + sep + "mm"));
+    private Font font;
+    private ARGBColor backgroundColor;
+    private ARGBColor color;
+    private Size size;
 
-        int columnOffset = 1;
-        int lineOffset = 1;
+    public static TimeFrameBuilder aTimeFrame() {
+        return new TimeFrameBuilder();
+    }
 
-        Frame frame = new Frame(new Size(20, 7));
+    public TimeFrameBuilder sized(Size size) {
+        this.size = size;
+        return this;
+    }
+
+    public TimeFrameBuilder withFont(Font font) {
+        this.font = font;
+        return this;
+    }
+
+    public TimeFrameBuilder withBackgroundColor(ARGBColor backgroundColor) {
+        this.backgroundColor = backgroundColor;
+        return this;
+    }
+
+    public TimeFrameBuilder withFontColor(ARGBColor color) {
+        this.color = color;
+        return this;
+    }
+
+    public Frame buildForTime(LocalTime time) {
+        String timeString = getTimeAsString(time);
+
+        int columnOffset = (size.nbColumns() - 18)/2;
+        int lineOffset = (size.nbLines() - 5) / 2;
+
+        Frame frame = new Frame(size, backgroundColor);
+
         for (int charIndex = 0; charIndex < timeString.length(); charIndex++) {
-            Glyph glyph = TimeFont.font().glyphFor(timeString.charAt(charIndex));
-            addGlyph(glyph, frame, columnOffset, lineOffset);
+            Glyph glyph = font.glyphFor(timeString.charAt(charIndex));
+            addGlyph(glyph, frame, columnOffset, lineOffset, color);
             columnOffset += glyph.size().nbColumns() + 1 ;
         }
 
         return frame;
     }
 
-    private static void addGlyph(Glyph one, Frame frame1, int columnOffset, int lineOffset) {
-        ARGBColor color = new ARGBColor(5, 200, 200, 0) ;
+
+    private static String getTimeAsString(LocalTime time) {
+        String sep = time.getSecond() % 2 == 0 ? ":": " ";
+        return time.format(DateTimeFormatter.ofPattern("HH" + sep + "mm"));
+    }
+
+    private static void addGlyph(Glyph one, Frame frame1, int columnOffset, int lineOffset, ARGBColor color) {
         Size size = one.size();
         for(int lineIndex = 0; lineIndex < size.nbLines(); lineIndex ++) {
             for (int columnIndex = 0; columnIndex < size.nbColumns() ; columnIndex++) {
@@ -34,5 +68,4 @@ public class TimeFrameBuilder {
             }
         }
     }
-
 }

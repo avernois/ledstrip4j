@@ -16,28 +16,21 @@ public class Apa {
         GpioPinDigitalOutput data = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "DATA", PinState.LOW);
 
         LedStripIO io = new LedStripGPIO(data, clock);
-        Size size = new Size(20, 7);
+        Size size = new Size(24, 5);
         
-        Frame frame = new Frame(size);
-        for (int i = 0; i < frame.getLineNb(); i++) {
-            for (int j = 0; j < frame.getColumnNb(); j++) {
-                int columnStep = (255 / size.nbColumns()) * j;
-                int lineStep = (255 / size.nbLines()) * i;
-                ARGBColor color = new ARGBColor(20, columnStep, 150, 255 - lineStep);
-                frame.setPixelAt(i, j, color);
-            }
-        }
-
         ApaMatrix matrix = new ApaMatrix(size, new Apa102LedStrip(io));
 
         matrix.print(new Frame(size, ARGBColor.BLACK));
 
-        matrix.print(frame);
-
-        matrix.print(new Frame(size, ARGBColor.BLACK));
-
         for (int i = 0; i < 1000; i++) {
-            matrix.print(TimeFrameBuilder.time(LocalTime.now()));
+            Frame frame = TimeFrameBuilder.aTimeFrame()
+                    .sized(size)
+                    .withBackgroundColor(new ARGBColor(1, 75,75,100))
+                    .withFont(TimeFont.font())
+                    .withFontColor(new ARGBColor(15, 155, 0, 155))
+                    .buildForTime(LocalTime.now());
+
+            matrix.print(frame);
             Thread.sleep(1000);
         }
 
