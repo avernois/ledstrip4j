@@ -1,4 +1,6 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.font;
+
+import fr.craftinglabs.pi.apa102.matrix.Size;
 
 public class Glyph {
     private Size size;

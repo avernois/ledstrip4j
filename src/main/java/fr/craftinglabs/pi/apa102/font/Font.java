@@ -1,4 +1,4 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.font;
 
 import java.util.HashMap;
 import java.util.List;

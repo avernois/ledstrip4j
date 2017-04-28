@@ -1,4 +1,4 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.matrix;
 
 public class Size {
     private final int nbColumn;

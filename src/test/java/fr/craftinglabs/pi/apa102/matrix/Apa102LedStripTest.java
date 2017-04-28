@@ -1,5 +1,8 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.matrix;
 
+import fr.craftinglabs.pi.apa102.ARGBColor;
+import fr.craftinglabs.pi.apa102.matrix.io.LedStrip;
+import fr.craftinglabs.pi.apa102.matrix.io.LedStripIO;
 import org.junit.Test;
 
 import java.util.ArrayList;

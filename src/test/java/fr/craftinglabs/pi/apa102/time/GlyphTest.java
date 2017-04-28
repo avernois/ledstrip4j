@@ -1,9 +1,8 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.time;
 
+import fr.craftinglabs.pi.apa102.font.Glyph;
+import fr.craftinglabs.pi.apa102.matrix.Size;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.*;
 

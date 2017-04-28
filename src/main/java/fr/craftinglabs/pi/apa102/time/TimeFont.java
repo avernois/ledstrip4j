@@ -1,5 +1,9 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.time;
 
+
+import fr.craftinglabs.pi.apa102.matrix.Size;
+import fr.craftinglabs.pi.apa102.font.Font;
+import fr.craftinglabs.pi.apa102.font.Glyph;
 
 import java.util.Arrays;
 

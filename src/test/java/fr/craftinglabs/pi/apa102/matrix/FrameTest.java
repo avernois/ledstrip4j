@@ -1,5 +1,9 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.matrix;
 
+import fr.craftinglabs.pi.apa102.ARGBColor;
+import fr.craftinglabs.pi.apa102.matrix.Frame;
+import fr.craftinglabs.pi.apa102.matrix.Size;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -19,7 +23,7 @@ public class FrameTest {
 
         for(int line = 0; line < 3; line++) {
             for (int column = 0; column < 2; column++) {
-                assertEquals(ARGBColor.BLACK, frame.getPixelAt(line, column));
+                Assert.assertEquals(ARGBColor.BLACK, frame.getPixelAt(line, column));
             }
         }
     }

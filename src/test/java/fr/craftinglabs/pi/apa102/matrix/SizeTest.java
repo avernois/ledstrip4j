@@ -1,5 +1,6 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.matrix;
 
+import fr.craftinglabs.pi.apa102.matrix.Size;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

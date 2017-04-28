@@ -1,4 +1,4 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.matrix.io;
 
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 

@@ -2,6 +2,13 @@ package fr.craftinglabs.pi.apa102;
 
 import com.pi4j.io.gpio.*;
 import com.pi4j.wiringpi.GpioUtil;
+import fr.craftinglabs.pi.apa102.matrix.Apa102LedStrip;
+import fr.craftinglabs.pi.apa102.matrix.ApaMatrix;
+import fr.craftinglabs.pi.apa102.matrix.Frame;
+import fr.craftinglabs.pi.apa102.matrix.Size;
+import fr.craftinglabs.pi.apa102.matrix.io.LedStripGPIO;
+import fr.craftinglabs.pi.apa102.matrix.io.LedStripIO;
+import fr.craftinglabs.pi.apa102.time.TimeFrameBuilder;
 
 import java.time.LocalTime;
 
