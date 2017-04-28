@@ -1,10 +1,9 @@
-package fr.craftinglabs.pi.apa102.time;
+package fr.craftinglabs.pi.apa102.font;
 
-import fr.craftinglabs.pi.apa102.font.Glyph;
 import fr.craftinglabs.pi.apa102.matrix.Size;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class GlyphTest {
     @Test
