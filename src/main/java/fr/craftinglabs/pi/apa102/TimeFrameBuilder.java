@@ -6,7 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 public class TimeFrameBuilder {
 
-    private Font font;
+    public static final int NB_COLUMN_FOR_TIME_TEXT = 4 * 4 + 2;
+    public static final int NB_LINE_FOR_TIME_TEXT = 5;
+    private Font font = TimeFont.font();
     private ARGBColor backgroundColor;
     private ARGBColor color;
     private Size size;
@@ -17,11 +19,6 @@ public class TimeFrameBuilder {
 
     public TimeFrameBuilder sized(Size size) {
         this.size = size;
-        return this;
-    }
-
-    public TimeFrameBuilder withFont(Font font) {
-        this.font = font;
         return this;
     }
 
@@ -38,8 +35,8 @@ public class TimeFrameBuilder {
     public Frame buildForTime(LocalTime time) {
         String timeString = getTimeAsString(time);
 
-        int columnOffset = (size.nbColumns() - 18)/2;
-        int lineOffset = (size.nbLines() - 5) / 2;
+        int columnOffset = (size.nbColumns() - NB_COLUMN_FOR_TIME_TEXT)/2;
+        int lineOffset = (size.nbLines() - NB_LINE_FOR_TIME_TEXT) / 2;
 
         Frame frame = new Frame(size, backgroundColor);
 

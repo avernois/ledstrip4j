@@ -26,7 +26,6 @@ public class Apa {
             Frame frame = TimeFrameBuilder.aTimeFrame()
                     .sized(size)
                     .withBackgroundColor(new ARGBColor(1, 75,75,100))
-                    .withFont(TimeFont.font())
                     .withFontColor(new ARGBColor(15, 155, 0, 155))
                     .buildForTime(LocalTime.now());
 
