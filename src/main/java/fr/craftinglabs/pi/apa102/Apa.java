@@ -8,9 +8,6 @@ import fr.craftinglabs.pi.apa102.matrix.Frame;
 import fr.craftinglabs.pi.apa102.matrix.Size;
 import fr.craftinglabs.pi.apa102.matrix.io.LedStripGPIO;
 import fr.craftinglabs.pi.apa102.matrix.io.LedStripIO;
-import fr.craftinglabs.pi.apa102.time.TimeFrameBuilder;
-
-import java.time.LocalTime;
 
 public class Apa {
 
@@ -23,22 +20,20 @@ public class Apa {
         GpioPinDigitalOutput data = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "DATA", PinState.LOW);
 
         LedStripIO io = new LedStripGPIO(data, clock);
-        Size size = new Size(24, 5);
+        Size size = new Size(750, 5);
         
         ApaMatrix matrix = new ApaMatrix(size, new Apa102LedStrip(io));
 
         matrix.print(new Frame(size, ARGBColor.BLACK));
 
-        for (int i = 0; i < 1000; i++) {
-            Frame frame = TimeFrameBuilder.aTimeFrame()
-                    .sized(size)
-                    .withBackgroundColor(new ARGBColor(1, 75,75,100))
-                    .withFontColor(new ARGBColor(15, 155, 0, 155))
-                    .buildForTime(LocalTime.now());
+        Frame frame = TextFrameBuilder.aTimeFrame()
+                .sized(size)
+                .withBackgroundColor(new ARGBColor(1, 75,75,100))
+                .withFontColor(new ARGBColor(15, 155, 0, 155))
+                .buildText("ABCDEFHIJKLMNOPQR", 0);
 
-            matrix.print(frame);
-            Thread.sleep(1000);
-        }
+        matrix.print(frame);
+        Thread.sleep(10000);
 
         matrix.print(new Frame(size, ARGBColor.BLACK));
     }
