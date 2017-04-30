@@ -55,7 +55,7 @@ public class TextFrameBuilder {
 }
 
 class Landscape {
-    private ARGBColor[][] fullFrame; // boolean would be better
+    private boolean[][] fullFrame;
     private Size size;
     private final ARGBColor color;
     private final ARGBColor backgroundColor;
@@ -67,7 +67,7 @@ class Landscape {
         this.color = color;
         this.backgroundColor = backgroundColor;
 
-        fullFrame = new ARGBColor[size.nbColumns()][size.nbLines()];
+        fullFrame = new boolean[size.nbColumns()][size.nbLines()];
         int columnOffset = 0;
         int lineOffset = 0;
         for (Glyph glyph : glyphs) {
@@ -80,11 +80,7 @@ class Landscape {
         Size size = one.size();
         for (int lineIndex = 0; lineIndex < size.nbLines(); lineIndex++) {
             for (int columnIndex = 0; columnIndex < size.nbColumns(); columnIndex++) {
-                if (one.isSetAt(lineIndex, columnIndex)) {
-                    fullFrame[columnIndex + columnOffset][4 - lineIndex + lineOffset] = color;
-                } else {
-                    fullFrame[columnIndex + columnOffset][4 - lineIndex + lineOffset] = backgroundColor;
-                }
+                fullFrame[columnIndex + columnOffset][4 - lineIndex + lineOffset] = one.isSetAt(lineIndex, columnIndex);
             }
         }
 
@@ -95,11 +91,11 @@ class Landscape {
         for (int lines = 0; lines < size.nbLines(); lines++) {
             for (int columns = 0; columns < size.nbColumns(); columns++) {
 
-                ARGBColor color = fullFrame[columns + startingOffset][lines];
-                if(color == null) {
-                    frame.setPixelAt(lines, columns, backgroundColor);
-                } else {
+                Boolean ledState = fullFrame[columns + startingOffset][lines];
+                if(ledState) {
                     frame.setPixelAt(lines, columns, color);
+                } else {
+                    frame.setPixelAt(lines, columns, backgroundColor);
                 }
             }
         }
