@@ -1,4 +1,4 @@
-package fr.craftinglabs.pi.apa102;
+package fr.craftinglabs.pi.apa102.text;
 
 import fr.craftinglabs.pi.apa102.font.Font;
 import fr.craftinglabs.pi.apa102.font.Glyph;
