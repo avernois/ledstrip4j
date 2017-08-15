@@ -66,7 +66,7 @@ public class TimeFrameBuilder {
         for(int lineIndex = 0; lineIndex < size.nbLines(); lineIndex ++) {
             for (int columnIndex = 0; columnIndex < size.nbColumns() ; columnIndex++) {
                 if(one.isSetAt(lineIndex,columnIndex)) {
-                    frame1.setPixelAt(4 - lineIndex + lineOffset, columnIndex + columnOffset, color);
+                    frame1.setPixelAt( columnIndex + columnOffset, 4 - lineIndex + lineOffset, color);
                 }
             }
         }

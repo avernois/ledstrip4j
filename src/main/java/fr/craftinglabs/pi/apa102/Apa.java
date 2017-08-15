@@ -6,11 +6,12 @@ import fr.craftinglabs.pi.apa102.matrix.Apa102LedStrip;
 import fr.craftinglabs.pi.apa102.matrix.ApaMatrix;
 import fr.craftinglabs.pi.apa102.matrix.Frame;
 import fr.craftinglabs.pi.apa102.matrix.Size;
+import fr.craftinglabs.pi.apa102.matrix.io.ConsoleTwoColorMatrixLedStrip;
 import fr.craftinglabs.pi.apa102.matrix.io.LedStripGPIO;
 import fr.craftinglabs.pi.apa102.matrix.io.LedStripIO;
-import fr.craftinglabs.pi.apa102.time.TimeFrameBuilder;
+import fr.craftinglabs.pi.apa102.text.SlidingTextFramesBuilder;
 
-import java.time.LocalTime;
+import static fr.craftinglabs.pi.apa102.text.SlidingTextFramesBuilder.*;
 
 public class Apa {
 
@@ -27,17 +28,19 @@ public class Apa {
         
         ApaMatrix matrix = new ApaMatrix(size, new Apa102LedStrip(io));
 
+        //ApaMatrix matrix = new ApaMatrix(size, new ConsoleTwoColorMatrixLedStrip(size, new ARGBColor(1, 75,75,100)));
+
         matrix.print(new Frame(size, ARGBColor.BLACK));
 
-        for (int i = 0; i < 1000; i++) {
-            Frame frame = TimeFrameBuilder.aTimeFrame()
-                    .sized(size)
-                    .withBackgroundColor(new ARGBColor(1, 75,75,100))
-                    .withFontColor(new ARGBColor(15, 155, 0, 155))
-                    .buildForTime(LocalTime.now());
+        SlidingTextFramesBuilder builder = slidingTextFrames()
+                                            .sized(size)
+                                            .withBackgroundColor(new ARGBColor(0, 75, 75, 100))
+                                            .withFontColor(new ARGBColor(10, 100, 0, 155))
+                                            .forText("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890");
 
+        for(Frame frame : builder.build()) {
             matrix.print(frame);
-            Thread.sleep(1000);
+            Thread.sleep(100);
         }
 
         matrix.print(new Frame(size, ARGBColor.BLACK));

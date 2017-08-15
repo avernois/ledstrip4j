@@ -25,11 +25,11 @@ public class ApaMatrix {
         for (int lineIndex = 0; lineIndex < lineNb; lineIndex++) {
             if(lineIndex % 2 == 0) {
                 for (int columnIndex = 0; columnIndex < columnNb; columnIndex++) {
-                    colors.setColorAt(frame.getPixelAt(lineIndex, columnIndex), lineIndex * columnNb + columnIndex +1);
+                    colors.setColorAt(frame.getPixelAt(columnIndex, lineIndex), lineIndex * columnNb + columnIndex +1);
                 }
             } else {
                 for (int columnIndex = 0; columnIndex < columnNb; columnIndex++) {
-                    colors.setColorAt(frame.getPixelAt(lineIndex, columnIndex), lineIndex * columnNb + columnNb - columnIndex);
+                    colors.setColorAt(frame.getPixelAt(columnIndex, lineIndex), lineIndex * columnNb + columnNb - columnIndex);
                 }
             }
         }
