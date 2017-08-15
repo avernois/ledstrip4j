@@ -62,12 +62,10 @@ public class ApaMatrixTest {
         for (int column = 0; column < 4; column++) {
             ARGBColor color = new ARGBColor(10, column, 0, 0);
             addedColors.add(color);
-            frame.setPixelAt(line, column, color);
+            frame.setPixelAt(column, line, color);
         }
         return addedColors;
     }
-
-
 }
 
 class FakeStrip implements LedStrip {

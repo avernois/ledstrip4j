@@ -86,9 +86,9 @@ class TextLandscape {
             for (int columns = 0; columns < size.nbColumns(); columns++) {
                 Boolean ledState = fullFrame[columns + startingOffset][lines];
                 if(ledState) {
-                    frame.setPixelAt(lines, columns, color);
+                    frame.setPixelAt(columns, lines, color);
                 } else {
-                    frame.setPixelAt(lines, columns, backgroundColor);
+                    frame.setPixelAt(columns, lines, backgroundColor);
                 }
             }
         }

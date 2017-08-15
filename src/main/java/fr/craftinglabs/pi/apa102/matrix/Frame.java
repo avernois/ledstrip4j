@@ -12,31 +12,27 @@ public class Frame {
 
     public Frame(Size size, ARGBColor initColor) {
         this.size = size;
-        frame = new ARGBColor[size.nbLines()][size.nbColumns()];
+        frame = new ARGBColor[size.nbColumns()][size.nbLines()];
         initFrame(initColor);
     }
 
-    public ARGBColor getPixelAt(int line, int column) {
-        return frame[line][column];
+    public ARGBColor getPixelAt(int column, int line) {
+        return frame[column][line];
     }
 
-    public void setPixelAt(int line, int column, ARGBColor color) {
-        frame[line][column] = color;
+    public void setPixelAt(int column, int line, ARGBColor color) {
+        frame[column][line] = color;
     }
 
     private void initFrame(ARGBColor initColor) {
         for (int columnIndex = 0; columnIndex < size.nbColumns(); columnIndex++) {
             for (int lineIndex= 0; lineIndex < size.nbLines(); lineIndex++) {
-                frame[lineIndex][columnIndex] = initColor;
+                frame[columnIndex][lineIndex] = initColor;
             }
         }
     }
 
-    public int getColumnNb() {
-        return size.nbColumns();
-    }
-
-    public int getLineNb() {
-        return size.nbLines();
+    public Size getSize() {
+        return size;
     }
 }

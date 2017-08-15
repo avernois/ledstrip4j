@@ -18,18 +18,19 @@ public class ApaMatrix {
 
 
     private static ColorBand frameToColorBand(Frame frame) {
-        int lineNb = frame.getLineNb();
-        int columnNb = frame.getColumnNb();
+        int lineNb = frame.getSize().nbLines();
+        int columnNb = frame.getSize().nbColumns();
+
         ColorBand colors = new ColorBand(lineNb * columnNb);
 
         for (int lineIndex = 0; lineIndex < lineNb; lineIndex++) {
             if(lineIndex % 2 == 0) {
                 for (int columnIndex = 0; columnIndex < columnNb; columnIndex++) {
-                    colors.setColorAt(frame.getPixelAt(lineIndex, columnIndex), lineIndex * columnNb + columnIndex +1);
+                    colors.setColorAt(frame.getPixelAt(columnIndex, lineIndex), lineIndex * columnNb + columnIndex +1);
                 }
             } else {
                 for (int columnIndex = 0; columnIndex < columnNb; columnIndex++) {
-                    colors.setColorAt(frame.getPixelAt(lineIndex, columnIndex), lineIndex * columnNb + columnNb - columnIndex);
+                    colors.setColorAt(frame.getPixelAt(columnIndex, lineIndex), lineIndex * columnNb + columnNb - columnIndex);
                 }
             }
         }
