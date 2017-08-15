@@ -9,10 +9,10 @@ import static org.junit.Assert.*;
 public class FrameTest {
     @Test public void
     should_have_size() {
-        Frame frame = new Frame(new Size(2, 3));
+        Size size = new Size(2, 3);
+        Frame frame = new Frame(size);
 
-        assertEquals(2, frame.getColumnNb());
-        assertEquals(3, frame.getLineNb());
+        assertEquals(size, frame.getSize());
     }
 
     @Test public void

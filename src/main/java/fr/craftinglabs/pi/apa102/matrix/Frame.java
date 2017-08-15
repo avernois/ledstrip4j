@@ -32,11 +32,7 @@ public class Frame {
         }
     }
 
-    public int getColumnNb() {
-        return size.nbColumns();
-    }
-
-    public int getLineNb() {
-        return size.nbLines();
+    public Size getSize() {
+        return size;
     }
 }

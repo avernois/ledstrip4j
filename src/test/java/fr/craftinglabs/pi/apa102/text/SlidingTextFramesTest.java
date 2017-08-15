@@ -53,7 +53,7 @@ public class SlidingTextFramesTest {
         Frame secondFrame = getFrameNumber(2, frames);
 
         List<ARGBColor> lastColumnColors = Arrays.asList(FOREGROUND_COLOR, FOREGROUND_COLOR, FOREGROUND_COLOR, FOREGROUND_COLOR, FOREGROUND_COLOR);
-        assertColumnNumberMatch(secondFrame.getColumnNb() - 1, secondFrame, lastColumnColors);
+        assertColumnNumberMatch(frameSize.nbColumns() - 1, secondFrame, lastColumnColors);
     }
 
     @Test public void
@@ -65,10 +65,10 @@ public class SlidingTextFramesTest {
         Frame thirdFrame = getFrameNumber(3, frames);
 
         List<ARGBColor> beforeLastColumnColors = Arrays.asList(FOREGROUND_COLOR, FOREGROUND_COLOR, FOREGROUND_COLOR, FOREGROUND_COLOR, FOREGROUND_COLOR);
-        assertColumnNumberMatch(thirdFrame.getColumnNb() - 2, thirdFrame, beforeLastColumnColors);
+        assertColumnNumberMatch(frameSize.nbColumns() - 2, thirdFrame, beforeLastColumnColors);
 
         List<ARGBColor> lastColumnsColors = Arrays.asList(BACKGROUND_COLOR, FOREGROUND_COLOR, BACKGROUND_COLOR, BACKGROUND_COLOR, FOREGROUND_COLOR);
-        assertColumnNumberMatch(thirdFrame.getColumnNb() - 1, thirdFrame, lastColumnsColors);
+        assertColumnNumberMatch(frameSize.nbColumns() - 1, thirdFrame, lastColumnsColors);
     }
 
     @Test public void
@@ -78,7 +78,7 @@ public class SlidingTextFramesTest {
         SlidingTextFrames frames = new SlidingTextFrames("a", frameSize, FOREGROUND_COLOR, BACKGROUND_COLOR, TextFont.font());
 
         for(Frame frame : frames) {
-            assertSameSize(frameSize, frame);
+            assertEquals(frameSize, frame.getSize());
         }
     }
 
@@ -93,12 +93,6 @@ public class SlidingTextFramesTest {
         assertNotSame(firstIterator, secondIterator);
     }
 
-
-    private void assertSameSize(Size frameSize, Frame frame) {
-        assertEquals(frameSize.nbColumns(), frame.getColumnNb());
-        assertEquals(frameSize.nbLines(), frame.getLineNb());
-    }
-
     private Frame getLastFrame(SlidingTextFrames frames) {
         Iterator<Frame> iterator = frames.iterator();
         Frame lastFrame = null;
@@ -110,7 +104,7 @@ public class SlidingTextFramesTest {
     }
 
     private void assertColumnNumberMatch(int columnNumber, Frame secondFrame, List<ARGBColor> lastColumnColors) {
-        for(int line = 0; line < secondFrame.getLineNb(); line++) {
+        for(int line = 0; line < secondFrame.getSize().nbLines(); line++) {
             assertEquals(lastColumnColors.get(line), secondFrame.getPixelAt(columnNumber, line));
         }
     }

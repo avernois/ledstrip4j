@@ -18,8 +18,9 @@ public class ApaMatrix {
 
 
     private static ColorBand frameToColorBand(Frame frame) {
-        int lineNb = frame.getLineNb();
-        int columnNb = frame.getColumnNb();
+        int lineNb = frame.getSize().nbLines();
+        int columnNb = frame.getSize().nbColumns();
+
         ColorBand colors = new ColorBand(lineNb * columnNb);
 
         for (int lineIndex = 0; lineIndex < lineNb; lineIndex++) {
