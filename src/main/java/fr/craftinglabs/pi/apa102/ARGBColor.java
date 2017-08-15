@@ -8,10 +8,10 @@ public class ARGBColor {
     private int brightness;
 
     public ARGBColor(int brightness, int red, int green, int blue) {
-        if (isUnder(brightness, 31)
-                || isUnder(red, 255)
-                || isUnder(green, 255)
-                || isUnder(blue, 255)) {
+        if (isAbove(brightness, 31)
+                || isAbove(red, 255)
+                || isAbove(green, 255)
+                || isAbove(blue, 255)) {
             throw new IllegalArgumentException();
         }
 
@@ -22,8 +22,8 @@ public class ARGBColor {
         this.blue = blue;
     }
 
-    private boolean isUnder(int brightness, int maxValue) {
-        return brightness > maxValue;
+    private boolean isAbove(int testedValue, int maxValue) {
+        return testedValue > maxValue;
     }
 
     public int getRed() {
