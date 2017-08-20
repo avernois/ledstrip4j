@@ -270,7 +270,21 @@ public class TextFont {
             "   ",
             " X ");
 
-    static private final Font font = new Font(Arrays.asList(ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, ZERO, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, SPACE, EXCLAMATION_MARK));
+    private static final Glyph DOT  = new Glyph(glyphSize, '.',
+            "   ",
+            "   ",
+            "   ",
+            "   ",
+            " X ");
+
+    private static final Glyph QUESTION_MARK  = new Glyph(glyphSize, '?',
+            "xxx",
+            "x x",
+            "  x",
+            " x ",
+            " X ");
+
+    static private final Font font = new Font(Arrays.asList(ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, ZERO, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, SPACE, EXCLAMATION_MARK, DOT, QUESTION_MARK));
 
     static final public Font font() {
         return font;
