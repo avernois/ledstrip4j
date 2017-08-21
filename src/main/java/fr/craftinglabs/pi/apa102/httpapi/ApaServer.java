@@ -47,17 +47,17 @@ public class ApaServer {
 
         String text = "Port " + DEFAULT_PORT + ".";
 
-        slideText(size, matrix, text);
+        slideText(matrix, text);
 
-        get("/text/:text", ((request, response) -> slideText(size, matrix, request.params(":text"))));
+        get("/text/:text", ((request, response) -> slideText(matrix, request.params(":text"))));
 
         addShutdownHook();
         Thread.currentThread().join();
     }
 
-    private static String slideText(Size size, ApaMatrix matrix, String text) throws InterruptedException {
+    private static String slideText(ApaMatrix matrix, String text) throws InterruptedException {
         SlidingTextFramesBuilder builder = slidingTextFrames()
-                .sized(size)
+                .sized(matrix.size())
                 .withBackgroundColor(new ARGBColor(0, 75, 75, 100))
                 .withFontColor(new ARGBColor(10, 100, 0, 155))
                 .forText(text);
