@@ -52,6 +52,14 @@ public class ApaMatrixTest {
         assertThat(fakeStrip.getColors(), is(expectedColors));
     }
 
+    @Test public void
+    should_return_its_size() {
+        Size size = new Size(4, 2);
+        ApaMatrix matrix = new ApaMatrix(size, fakeStrip);
+
+        assertThat(matrix.size(), is(size));
+    }
+
     @Before
     public void setUp() throws Exception {
         fakeStrip = new FakeStrip();

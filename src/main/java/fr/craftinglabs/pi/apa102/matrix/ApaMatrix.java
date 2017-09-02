@@ -38,4 +38,7 @@ public class ApaMatrix {
         return colors;
     }
 
+    public Size size() {
+        return size;
+    }
 }
