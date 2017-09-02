@@ -58,21 +58,7 @@ public class TextPrinter implements Runnable {
                 .withFontColor(new ARGBColor(15, 255, 255, 255))
                 .buildForTime(time);
 
-        Iterable<Frame> frames = () -> new Iterator<Frame>() {
-            int call = 0;
-            @Override
-            public boolean hasNext() {
-                return call == 0;
-            }
-
-            @Override
-            public Frame next() {
-                call++;
-                return frame;
-            }
-        };
-        
-        return frames;
+        return new IterableFrame(frame);
     }
 
     private void sleep(int timemillis) {
